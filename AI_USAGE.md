@@ -5,7 +5,7 @@
 - **What Claude helped with:** Walked through initializing the local git repo, configuring git identity and the `main` branch default, authenticating and creating the GitHub repo via the `gh` CLI (I wanted to try using this instead of the GitBash), and scaffolding the initial folder structure (`data/raw/`, `notebooks/`, `rendered/`, `.gitignore`).
 **What I did myself:** Ran and verified each command, made the repo-naming and branch decisions.
 
-## Logistic Regression setup
+## Logistic Regression setup and Odds Ratio
 - **Tool:** Claude (Sonnet 5)
 - **What Claude helped with:** I asked "How to fit the regression model" - after copy and pasting the resulting information about my data. I am not proficient in statistics or statistical coding and needed AI help to write a code for me.
 ```python
@@ -44,4 +44,9 @@ results_table.columns = ['Odds Ratio', '2.5%', '97.5%']
 results_table['p-value'] = model.pvalues
 print(results_table.round(3))
 ```
-- **What I did myself**: Ran and verified the model worked after Claude wrote a script for the logistic regression model as well as the odds ratio and verified that the numbers made sense and that the output made sense. I also added markdown blocks to explain the logistic regression and the odds ratio.
+- **What I did myself**: Ran and verified the model worked after Claude wrote a script for the logistic regression model as well as the odds ratio and verified that the numbers made sense and that the output made sense. I also added markdown blocks to explain the logistic regression and the odds ratio. I chose the logistic regression approach, the predictors, ran and verified all code, and interpreted the missing data pattern.
+
+## Visualization
+- **Tool:** Claude (Sonnet 5)
+- **What Claude helped with:** I asked "Can you help me create a visualization for this data?" I am new to creating visualizations and graphing and do not know how to use matplotlib so to make a nice graph I had Claude code and format one for me.
+- **What I did myself:** I wrote out the plot and ran it through Jupyter notebooks to ensure it worked and looked presentable. The interpretation was entirely on my own. 
