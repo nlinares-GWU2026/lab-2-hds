@@ -4,7 +4,7 @@
 What this notebook analyzes and why
 
 ## Repo structure
--`notebooks/` — analysis notebooks (Python `.ipynb` and R `.Rmd`)
+- `notebooks/` — analysis notebooks (Python `.ipynb` and R `.Rmd`)
 - `data/raw/` — source data or fetch script
 - `rendered/` — HTML/PDF exports of each notebook
 - `AI_USAGE.md` — AI assistance documentation
