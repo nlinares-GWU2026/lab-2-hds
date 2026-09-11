@@ -177,3 +177,20 @@ predict(model, newdata = ..., type = "response") is R's equivalent of model.pred
 Base R plotting is more manual than matplotlib: plot() only draws the first line, lines() adds the second one on top of the existing plot, and legend() is a fully separate call — there's no label= argument that auto-builds a legend the way matplotlib's does. More steps, but also more explicit control over each piece.
 ```
 - **What I did myself:** I wrote out the plot and ran it through RStudio to ensure it worked and looked presentable. The interpretation and comparison between workflows was entirely on my own.
+
+## Rendering from the Terminal
+- **Tool:** Claude (Sonnet 5)
+- **What Claude helped with:** I wanted to know how to render the `.html` files from the terminal so I asked Claude "How do I render the Jupyter notebook and the R Markdown from the terminal/console."
+```python
+Python
+jupyter nbconvert --to html --execute notebooks/lab2_analysis.ipynb --output-dir=rendered --output=lab2_analysis_python.html
+```
+```r
+R - in RStudio, Session -> Restart R, then in the console:
+rmarkdown::render("notebooks/lab2_analysis.Rmd", output_dir = "rendered", output_file = "lab2_analysis_r.html")
+```
+```bash
+Confirm both exist afterward: 
+ls -la rendered/
+```
+**What I did myself:** Ran and verified each command. 
