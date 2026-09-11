@@ -48,3 +48,34 @@ round(results_table, 3)
 
 ```
 
+## Visualization: Predicted CHD Risk by Age and Smoking Status
+
+Utilizes the fitted model to plot predicted 10-year CHD risk across the age range, comparing current smokers vs. non-smokers. Blood pressure and cholesterol are held at the sample mean, and diabetes at 0 (meaning non-diabetic), so the plot isolates the effect of age and smoking status specifically.
+
+```{r prediction-data}
+age_range <- seq(min(fram_clean$age), max(fram_clean$age))
+mean_sysBP <-mean(fram_clean$sysBP)
+mean_totChol <- mean(fram_clean$totChol)
+
+pred_smoker <- data.frame(age = age_range, sysBP = mean_sysBP, totChol = mean_totChol, currentSmoker = 1, diabetes = 0)
+pred_non_smoker <- pred_smoker 
+pred_non_smoker$currentSmoker <- 0 
+
+risk_smoker <-predict(model, newdata = pred_smoker, type = "response")
+risk_nonsmoker <- predict(model, newdata = pred_non_smoker, type = "response")
+```
+
+```{r plot-risk}
+plot(age_range, risk_smoker, type = "l", col = "firebrick", lwd = 2,
+     xlab = "Age (years)", ylab = "Predicted 10-year CHD risk",
+     main = "Predicted 10-Year CHD Risk by Age and Smoking Status",
+     ylim = c(0, max(risk_smoker, risk_nonsmoker)))
+lines(age_range, risk_nonsmoker, col = "steelblue", lwd = 2)
+legend("topleft", legend = c("Current smoker", "Non-smoker"),
+       col = c("firebrick", "steelblue"), lwd = 2, title = "Smoking Status")
+grid()
+```
+
+## Interpretation
+
+Based on the results of the logistic regression and the odds ratio, I chose to represent smoking status in a graph to show the risk of smoking and CHD across the age span. The odds ratio was 1.67x for smoking and 1.07x for age, making them strong predictors. Despite smoking status, age seemed to be the stronger predictor of developing CHD. The smokers had a significantly higher risk as well, but smoking alone was not the biggest contributor to CHD. Compared to the plot in the Jupyter notebook, the scale is smaller so it seems that the smoker and non smoker correlations are even less, but adjusting for scale to make both the same would likely end up plotting the same result. The outcomes of the logistic regression and odds ratio were essentially identical.
