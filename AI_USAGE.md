@@ -33,7 +33,8 @@ Run it and paste back the summary table output. We'll use it to compute odds rat
 Nice clean fit — and a genuinely interesting result: age, systolic BP, current smoking, and diabetes are all significant predictors (p < 0.001, except diabetes at p = 0.001), but total cholesterol isn't (p = 0.206) in this model. That's worth flagging now for your interpretation section later — it doesn't mean cholesterol is irrelevant to CHD, just that it's not adding significant predictive power once age, BP, smoking, and diabetes are already in the model (some of its effect is likely captured by those correlated variables).
 
  Raw logistic regression coefficients are in log-odds, which nobody reasons about intuitively. Exponentiating them converts to odds ratios — "how much the odds of CHD multiply by" for a one-unit increase in that predictor.
-
+```
+```python
 # Exponentiate coefficients and their confidence intervals to get odds ratios
 odds_ratios = np.exp(model.params)
 conf_int = np.exp(model.conf_int())
@@ -49,4 +50,12 @@ print(results_table.round(3))
 ## Visualization - Jupyter Notebook
 - **Tool:** Claude (Sonnet 5)
 - **What Claude helped with:** I asked "Can you help me create a visualization for this data?" I am new to creating visualizations and graphing and do not know how to use matplotlib so to make a nice graph I had Claude code and format one for me.
-- **What I did myself:** I wrote out the plot and ran it through Jupyter notebooks to ensure it worked and looked presentable. The interpretation was entirely on my own. 
+- **What I did myself:** I wrote out the plot and ran it through Jupyter notebooks to ensure it worked and looked presentable. The interpretation was entirely on my own.
+
+```python
+INSERT CODE FOR VISUALIZATION FROM JUPYTER NOTEBOOK
+```
+
+## Logistic Regression setup and Odds Ratio - R Markdown
+
+## Visualization - R Markdown
