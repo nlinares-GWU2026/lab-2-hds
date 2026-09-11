@@ -36,6 +36,3 @@ CONTINUE WITH HOW TO RUN THE ACTUAL NOTEBOOKS EACH - WIP
 ## Dataset
 Framingham Heart Study (teaching subset) - epidemiology / population health track. 
 4,240 participants, 15 predictor variables, 10-year coronary heart disease (CHD) outcome. Loaded directly from its original source at runtime (not local copy). See `data/raw/lab2-epi-framingham/SOURCE.md` for the exact URL and loading code. 
-
-## Workflow Comparison Jupyter Notebooks vs. R Markdown
-WIP
