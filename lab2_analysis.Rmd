@@ -1,0 +1,50 @@
+---
+title: "lab2_analysis"
+author: "Nicole Linares"
+date: "2026-09-10"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Logistic regression modeling 10-year coronary heart disease (CHD) risk from established risk factors (age, blood pressure, cholesterol, smoking, diabetes), using the Framingham Heart Study teaching dataset.
+
+```{r load-data}
+url <- "https://raw.githubusercontent.com/GauravPadawe/Framingham-Heart-Study/master/framingham.csv"
+fram <- read.csv(url)
+
+dim(fram)
+head(fram)
+```
+
+## Handling Missing Data
+
+Same approach as the Python notebook: several variables have missing values (glucose: 388, education: 105, BPMeds: 53, totChol: 50, cigsPerDay: 29, BMI:19, heartRate: 1). Since only 13.7% of rows have any missing value and the data are evenly distributed, I dropped incomplete rows via complete-case analysis (dropping missing value rows) rather than imputation (estimation). Worth noting as a limitation.
+
+```{r missing-data}
+colSums(is.na(fram))
+
+fram_clean <- na.omit(fram)
+dim(fram_clean)
+```
+
+## Logistic Regression Model
+
+Predicting 10-year CHD risk from five established risk factors: age, systolic blood pressure, total cholesterol, current smoking status, and diabetes. Logistic regression is a logical choice because the outcome (TenYearCHD) is binary (0/1). Linear regression is not appropriate for a binary outcome.
+
+```{r fit-model}
+model <- glm(TenYearCHD ~ age + sysBP + totChol + currentSmoker + diabetes, data = fram_clean, family = binomial)
+summary(model)
+```
+
+```{r odds-ratios}
+odds_ratios <- exp(coef(model))
+conf_int <- exp(confint(model))
+
+results_table <- cbind(`Odds Ratio` = odds_ratios, conf_int)
+round(results_table, 3)
+
+```
+
